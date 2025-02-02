@@ -53,7 +53,7 @@ const getAccount = (message: TMessageType): IAccountInfo => {
   };
 
   for (const [index, word] of processedMessage.entries()) {
-    if (word === "ac") {
+    if (word === "ac" || word === "acc") {
       if (index + 1 < processedMessage.length) {
         const accountNo = trimLeadingAndTrailingChars(
           processedMessage[index + 1],

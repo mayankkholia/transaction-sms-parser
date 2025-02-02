@@ -45,11 +45,14 @@ export const getTransactionType = (message: TMessageType): TTransactionType => {
   const creditPattern =
     /(?:credited|credit|deposited|added|received|refund|repayment)/gi;
   const debitPattern = /(?:debited|debit|deducted)/gi;
+  const paymentReceivedPattern = /payment\s+[\w.]+(\s+[\w.]+)*\s+received/;
   const miscPattern =
-    /(?:payment|spent|paid|used\s+at|charged|transaction\son|transaction\sfee|tran|booked|purchased|sent\s+to|purchase\s+of|spent\s+on)/gi;
+    /(?:payment|spent|paid|used\s+at|charged|transaction\son|transaction\sfee|tran|booked|purchased|sent\s+to|purchase\s+of|spent\s+on)|sent rs/gi;
 
   const messageStr = typeof message !== "string" ? message.join(" ") : message;
-
+  if (paymentReceivedPattern.test(messageStr)) {
+    return "credit";
+  }
   if (debitPattern.test(messageStr)) {
     return "debit";
   }

@@ -98,4 +98,5 @@ export const upiHandles = [
   "@ibl",
   "@sib",
   "@yespay",
+  "@ptybl",
 ];
